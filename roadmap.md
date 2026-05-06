@@ -1,6 +1,6 @@
 # Project GPU Vanguard: Execution Plan
 
-To build a native Linux GPU Profiler and Telemetry Daemon tailored for "Linux"😅.
+A native Linux GPU Profiler and Telemetry Daemon tailored for "Linux"😅.
 
 ### Milestone 1: Linux File I/O and Parsing Engine
 
