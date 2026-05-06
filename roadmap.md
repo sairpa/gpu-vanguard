@@ -1,6 +1,6 @@
-# Project GPU Vanguard: My Execution Plan
+# Project GPU Vanguard: Execution Plan
 
-To build a native Linux GPU Profiler and Telemetry Daemon tailored for Fedora 44.
+To build a native Linux GPU Profiler and Telemetry Daemon tailored for "Linux"😅.
 
 ### The C++ Rules to Follow
 
