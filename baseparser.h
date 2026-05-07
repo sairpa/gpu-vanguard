@@ -4,13 +4,29 @@
    @brief The header file for main base parser which takes responsibility of going through the process of running through the gpu vitals read.
    @date May 2026   
 **/
-
+#pragma once
 #include<iostream>
-#include<fstream>
 #include<memory>
+#include<string>
+#include<optional>
 
+// GPU Data Skeleton
+struct SGpuData{
+   int temperature;    // Celsius
+   int fanSpeed;       // rpm / %
+   int coreClock;      // Mhz
+   int memoryClock;    // Mhz
+   int gpuUtilization; // %
+   int vram;           // MB
+};
 
-// std::make_unique<int> k;
+// Base Interface
+class IBaseParser{
+   public:
+     virtual ~IBaseParser() = default;
+     virtual std::optional<SGpuData> parseData() = 0;
+};
+
 
 
 
