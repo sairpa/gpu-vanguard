@@ -9,7 +9,7 @@
 #include"baseparser.h"
 
 
-int main(int argc, char[] argv){
+int main(int argc, char** argv){
     std::cout << "Start of GPU Vanguard!\n";
     return 0;
 }
