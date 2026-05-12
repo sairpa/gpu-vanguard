@@ -5,11 +5,37 @@
    @date May 2026   
 **/
 
+#include<filesystem>
+#include"intelparser.h"
+#include"utils.h"
 
-#include"baseparser.h"
-
+constexpr std::string defaultSysFsPath = "/sys/class/drm/";
 
 int main(int argc, char** argv){
     std::cout << "Start of GPU Vanguard!\n";
+
+    // Doing a parse of all the cards in the pc...
+    auto recurse_dir_iter = std::filesystem::directory_iterator(defaultSysFsPath);
+    for (const std::filesystem::directory_entry& entry: recurse_dir_iter){
+        std::cout<< entry.path() << "\n";
+        if(entry.path().string().find("card") != std::string::npos){
+            std::cout << "\nFound a possible card!\n";
+            std::optional<std::string> cardInfo = parseCardInfo(entry.path().string());
+            if(!cardInfo.has_value()){
+                std::cerr << "Possible peripherals like the DP or HDMI ports are being detected as cards, skipping them...\n";
+                continue;
+            }else{
+                std::string device = cardInfo.value();
+                if(device == "intel_gpu" || device == "i915" || device == "xe"){
+                    std::cout << "Found an Intel GPU! \n";
+                    
+                    CIntelParser intelParser(entry.path().string());
+                    std::optional<SGpuData> gpuData = intelParser.parseData();
+                }// else for amd and nvidia
+
+            }
+        }
+    }
+
     return 0;
 }

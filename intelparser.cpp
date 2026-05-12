@@ -12,5 +12,7 @@ CIntelParser::CIntelParser(std::string sysFsPath): m_sysFsPath(std::move(sysFsPa
 }
 
 std::optional<SGpuData> CIntelParser::parseData(){
+    // Parse through the Intel stuff
+    
     return std::nullopt;
 }
