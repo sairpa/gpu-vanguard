@@ -38,7 +38,10 @@ int main(int argc, char** argv){
                         std::cerr << "Something wrong in parsing the gpu data for the intel gpu :/\n";
                     }
                 }// else for amd and nvidia
-
+                else if(device == "nvidia"){
+                    std::cout << "Found an nVidia GPU!\n";
+                    
+                }
             }
         }
     }
