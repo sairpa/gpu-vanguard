@@ -10,6 +10,7 @@
 #include<string>
 #include<optional>
 #include<fstream>
+#include"utils.h"
 
 // GPU Data Skeleton
 struct SGpuData{

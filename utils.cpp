@@ -28,3 +28,23 @@ std::optional<std::string> parseCardInfo(const std::string& cardPath){
     }
     return device;
 }
+
+std::optional<std::string> runCommand(const char* command) {
+    auto pipe = std::unique_ptr<FILE, decltype(&pclose)>(popen(command, "r"), pclose);
+
+    if (!pipe) {
+        std::cerr << "Unable to create a pipe for the command execution :/\n";
+        return std::nullopt;
+    }
+    std::vector<char> buffer(128);
+    std::string result;
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+        result += buffer.data();
+    }
+
+    if (result.empty()) {
+        std::cerr << "Didn't get any result from the command :/\n";
+        return std::nullopt;
+    }
+    return result;
+}
