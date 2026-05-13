@@ -25,12 +25,18 @@ int main(int argc, char** argv){
                 std::cerr << "Possible peripherals like the DP or HDMI ports are being detected as cards, skipping them...\n";
                 continue;
             }else{
-                std::string device = cardInfo.value();
-                if(device == "intel_gpu" || device == "i915" || device == "xe"){
+                
+                if(std::string device = cardInfo.value();device == "intel_gpu" || device == "i915" || device == "xe"){
                     std::cout << "Found an Intel GPU! \n";
                     
                     CIntelParser intelParser(entry.path().string());
-                    std::optional<SGpuData> gpuData = intelParser.parseData();
+                    if(std::optional<SGpuData> gpuData = intelParser.parseData();gpuData.has_value()){
+                        std::cout << "GPU Data for the intel card at path: " << entry.path() << "\n";
+                        std::cout << "Core clock: " << gpuData->coreClock << "Mhz\n";
+                    }
+                    else{
+                        std::cerr << "Something wrong in parsing the gpu data for the intel gpu :/\n";
+                    }
                 }// else for amd and nvidia
 
             }

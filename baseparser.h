@@ -9,6 +9,7 @@
 #include<memory>
 #include<string>
 #include<optional>
+#include<fstream>
 
 // GPU Data Skeleton
 struct SGpuData{
