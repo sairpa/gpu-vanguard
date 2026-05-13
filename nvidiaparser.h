@@ -9,9 +9,8 @@
 #include "baseparser.h"
 
 class CNvidiaParser: public IBaseParser{
-    std::string m_sysFsPath; // Default path to the nVidia gpu
     public:
-        explicit CNvidiaParser(std::string sysFsPath);
+        explicit CNvidiaParser() = default;
         ~CNvidiaParser() = default;
         std::optional<SGpuData> parseData() override;
 };

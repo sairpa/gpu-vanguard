@@ -7,6 +7,7 @@
 
 #include<filesystem>
 #include"intelparser.h"
+#include"nvidiaparser.h"
 #include"utils.h"
 
 constexpr std::string defaultSysFsPath = "/sys/class/drm/";
@@ -38,9 +39,12 @@ int main(int argc, char** argv){
                         std::cerr << "Something wrong in parsing the gpu data for the intel gpu :/\n";
                     }
                 }// else for amd and nvidia
-                else if(device == "nvidia"){
+                else if(device == "nvidia" || device == "nouveau" || device == "nouveau_modeset"){
                     std::cout << "Found an nVidia GPU!\n";
-                    
+                    CNvidiaParser nvidiaParser{CNvidiaParser()};
+                    if(std::optional<SGpuData> gpuData = nvidiaParser.parseData(); gpuData.has_value()){
+                        std::cout << "GPU Data for the nVidia card at path: " << entry.path() << "\n";
+                    }
                 }
             }
         }

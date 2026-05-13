@@ -7,10 +7,12 @@
 
 #include "nvidiaparser.h"
 
-CNvidiaParser::CNvidiaParser(std::string sysFsPath): m_sysFsPath(std::move(sysFsPath)){
-
-}
-
 std::optional<SGpuData> CNvidiaParser::parseData(){
+
+    SGpuData{0};
+    std::string line{""};
+    
+
+
     return std::nullopt; //stub for now :D
 }
