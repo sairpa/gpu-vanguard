@@ -12,7 +12,45 @@ std::optional<SGpuData> CNvidiaParser::parseData(){
     SGpuData gpuData{0};
     std::string line{""};
     if(std::optional<std::string> result = runCommand(nvidiaSmiDefaultQuery); result.has_value()){
-        std::cout << "yayy!\n";
+        // Parse logic for the string to gpuData conversion
+        int index{0}, count{0}, val{0};
+        std::string_view res = result.value();
+        for(int i =0; i< res.size(); i++){
+            if(res[i] == ','){ 
+                try{
+                    if(res[index] == ' '){
+                        val = std::stoi(std::string(res.substr(index+1,i-index)));
+                    }else{
+                        val = std::stoi(std::string(res.substr(index,i-index)));
+                    }
+                    
+                    switch(count){
+                        case 0:
+                            gpuData.temperature = val;
+                            break;
+                        case 1:
+                            gpuData.fanSpeed = val;
+                            break;
+                        case 2:
+                            gpuData.coreClock = val;
+                            break;
+                        case 3:
+                            gpuData.memoryClock = val;
+                            break;
+                        case 4:
+                            gpuData.gpuUtilization = val;
+                            break;
+                        case 5:
+                            gpuData.vram = val;
+                    };
+                    index = i+1;
+                    count++;
+                }catch(const std::invalid_argument e){
+                    std::cerr << "Got an invalid argument so skipping read and using default 0 val for count: " << count++ << "\n";
+                    index = i+1;
+                }                
+            }
+        }
         return gpuData;
     }
     else{

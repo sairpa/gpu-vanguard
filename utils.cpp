@@ -48,3 +48,17 @@ std::optional<std::string> runCommand(const char* command) {
     }
     return result;
 }
+
+
+void showGpuData(SGpuData gpuData){
+    std:: cout << 
+    "------------------GPU DATA------------------------\n"
+    << "temperature:\t"<< gpuData.temperature << "\n"
+    << "fanspeed:\t" << gpuData.fanSpeed << "\n"
+    << "coreclock:\t" << gpuData.coreClock << "\n"
+    << "memoryclock:\t"<< gpuData.memoryClock << "\n"
+    << "gpuutlization:\t"<< gpuData.gpuUtilization << "\n"
+    << "vram:\t"<< gpuData.vram << "\n"
+    "--------------------------------------------------\n";
+    return;
+}

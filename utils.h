@@ -12,6 +12,8 @@
 #include<string>
 #include<fstream>
 #include<memory>
+#include "baseparser.h"
 
 std::optional<std::string> parseCardInfo(const std::string& cardpath);
 std::optional<std::string> runCommand(const char* command);
+void showGpuData(SGpuData gpuData);

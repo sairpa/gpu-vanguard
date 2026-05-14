@@ -7,6 +7,7 @@
 
 #pragma once
 #include "baseparser.h"
+#include "utils.h"
 
 constexpr const char* nvidiaSmiDefaultQuery = "nvidia-smi --query-gpu=temperature.gpu,fan.speed,clocks.current.graphics,clocks.current.memory,utilization.gpu,memory.used --format=csv,noheader,nounits";
 

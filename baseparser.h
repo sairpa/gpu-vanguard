@@ -10,7 +10,6 @@
 #include<string>
 #include<optional>
 #include<fstream>
-#include"utils.h"
 
 // GPU Data Skeleton
 struct SGpuData{
@@ -28,7 +27,3 @@ class IBaseParser{
      virtual ~IBaseParser() = default;
      virtual std::optional<SGpuData> parseData() = 0;
 };
-
-
-
-

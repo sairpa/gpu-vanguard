@@ -43,6 +43,7 @@ int main(int argc, char** argv){
                     CNvidiaParser nvidiaParser{CNvidiaParser()};
                     if(std::optional<SGpuData> gpuData = nvidiaParser.parseData(); gpuData.has_value()){
                         // std::cout << "GPU Data for the nVidia card at path: " << entry.path().string() << "\n";
+                        showGpuData(gpuData.value());
                     }else{
                         std::cerr << "Something wrong in paring the nVidia gpu! \n";
                     }
