@@ -13,15 +13,16 @@ std::optional<SGpuData> CNvidiaParser::parseData(){
     std::string line{""};
     if(std::optional<std::string> result = runCommand(nvidiaSmiDefaultQuery); result.has_value()){
         // Parse logic for the string to gpuData conversion
+        std::cout << "Results: " << result.value() << "\n";
         int index{0}, count{0}, val{0};
-        std::string_view res = result.value();
+        std::string res = result.value() + ",";
         for(int i =0; i< res.size(); i++){
             if(res[i] == ','){ 
                 try{
                     if(res[index] == ' '){
-                        val = std::stoi(std::string(res.substr(index+1,i-index)));
+                        val = std::stoi((res.substr(index+1,i-index)));
                     }else{
-                        val = std::stoi(std::string(res.substr(index,i-index)));
+                        val = std::stoi((res.substr(index,i-index)));
                     }
                     
                     switch(count){
