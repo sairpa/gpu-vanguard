@@ -6,7 +6,7 @@
 **/
 
 #include<filesystem>
-#include"displaymanager.h"
+// #include"displaymanager.h"
 #include"intelparser.h"
 #include"nvidiaparser.h"
 
@@ -46,8 +46,8 @@ int main(int argc, char** argv){
                         // std::cout << "GPU Data for the nVidia card at path: " << entry.path().string() << "\n";
                         // showGpuData(gpuData.value());
                         if (gpuData.has_value()) {
-                            CDisplayManager ui;
-                            ui.renderDashboard(device, gpuData.value()); 
+                            // CDisplayManager ui;
+                            // ui.renderDashboard(device, gpuData.value()); 
                         }
                     }else{
                         std::cerr << "Something wrong in paring the nVidia gpu! \n";
